@@ -23,14 +23,19 @@ fn partition_v2<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 	arr.swap(rng.gen_range(lo..=hi), hi);
 	let mut i = lo;
 	let mut j = hi - 1;
-	// TODO FIXME Incorrect Implantation
 	loop {
 		while arr[i] < arr[hi] { i += 1; }
 		while j > lo && arr[j] > arr[hi] { j -= 1; }
-		if i < j { arr.swap(i, j); }
-		else {
-			arr.swap(j, hi);
-			return j;
+		if i < j {
+			arr.swap(i, j);
+			// Special Thanks to @aoibird for the concept
+			// Original implantation using do..while.. loop has the implication of i++, j--
+			i += 1;
+			j -= 1;
+		} else {
+			// Swap with j if the pivot is at lo, swap with i if the pivot is at hi
+			arr.swap(i, hi);
+			return i;
 		}
 	}
 }

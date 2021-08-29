@@ -14,7 +14,6 @@ fn partition<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 	}
 	// (lo..i:pivot](i..hi]
 	arr.swap(i, hi);
-	i += 1;
 	i
 }
 
@@ -27,9 +26,12 @@ fn partition_v2<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 	// TODO FIXME Incorrect Implantation
 	loop {
 		while arr[i] < arr[hi] { i += 1; }
-		while arr[j] > arr[hi] { j -= 1; }
-		if i >= j { return j; }
-		arr.swap(i, j);
+		while j > lo && arr[j] > arr[hi] { j -= 1; }
+		if i < j { arr.swap(i, j); }
+		else {
+			arr.swap(j, hi);
+			return j;
+		}
 	}
 }
 
@@ -37,8 +39,8 @@ fn partition_v2<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 fn __sort<T: Ord>(arr: &mut [T], lo: usize, hi: usize) {
 	if lo < hi {
 		let p = partition(arr, lo, hi);
-		__sort(arr, lo, p - 1); // Recursive sort [lo..i:pivot)
-		__sort(arr, p, hi); // Recursive sort (i:pivot..hi]
+		if p > lo { __sort(arr, lo, p - 1); } // Recursive sort [lo..i:pivot)
+		if p < hi { __sort(arr, p + 1, hi); } // Recursive sort (i:pivot..hi]
 	}
 }
 

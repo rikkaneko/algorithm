@@ -1,4 +1,4 @@
-const INSORT_CUTOFF: usize = 15;
+use super::insertion_sort::INSORT_CUTOFF;
 
 /// Merge two sorted array
 fn merge<T: Ord + Clone>(arr: &mut [T], aux: &mut [T], lo: usize, mid: usize, hi: usize) {

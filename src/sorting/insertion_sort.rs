@@ -1,3 +1,5 @@
+pub const INSORT_CUTOFF: usize = 15;
+
 /// Insertion sort
 pub fn sort<T: Ord>(arr: &mut [T]) {
 	for i in 1..arr.len() {

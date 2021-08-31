@@ -1,4 +1,5 @@
 use rand::Rng;
+use super::insertion_sort::INSORT_CUTOFF;
 /// Partition using Lomuto's Method
 pub fn partition<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 	let mut i = lo;
@@ -17,13 +18,14 @@ pub fn partition<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 	i
 }
 
-/// Alternative Partition Scheme using Hoare's method
+/// Alternative Partition Scheme using Hoare's Method
 pub fn partition_v2<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 	let mut rng = rand::thread_rng();
 	arr.swap(rng.gen_range(lo..=hi), hi);
 	let mut i = lo;
 	let mut j = hi - 1;
 	loop {
+		// Use indexed value for pivot, instead of copies
 		while arr[i] < arr[hi] { i += 1; }
 		while j > lo && arr[j] > arr[hi] { j -= 1; }
 		if i < j {
@@ -43,6 +45,11 @@ pub fn partition_v2<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 /// Quicksort (Recursive)
 fn __sort<T: Ord>(arr: &mut [T], lo: usize, hi: usize) {
 	if lo < hi {
+		// Use Insertion sort to sort small subarray instead
+		if hi - lo <= INSORT_CUTOFF {
+			super::insertion_sort::sort_v2(&mut arr[lo..=hi]);
+			return;
+		}
 		let p = partition(arr, lo, hi);
 		if p > lo { __sort(arr, lo, p - 1); } // Recursive sort [lo..i:pivot)
 		if p < hi { __sort(arr, p + 1, hi); } // Recursive sort (i:pivot..hi]

@@ -1,6 +1,6 @@
 use rand::Rng;
 /// Partition using Lomuto's Method
-fn partition<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
+pub fn partition<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 	let mut i = lo;
 	let mut rng = rand::thread_rng();
 	// Select a random element as pivot
@@ -18,7 +18,7 @@ fn partition<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 }
 
 /// Alternative Partition Scheme using Hoare's method
-fn partition_v2<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
+pub fn partition_v2<T: Ord>(arr: &mut [T], lo: usize, hi: usize) -> usize {
 	let mut rng = rand::thread_rng();
 	arr.swap(rng.gen_range(lo..=hi), hi);
 	let mut i = lo;

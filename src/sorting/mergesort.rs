@@ -49,7 +49,7 @@ fn __sort<T: Ord + Clone>(arr: &mut [T], aux: &mut [T], lo: usize, hi: usize) {
 
 /// Mergesort
 pub fn sort<T: Ord + Clone>(arr: &mut [T]) {
-	let mut aux: Vec<T> = Vec::with_capacity(arr.len());
+	let mut aux: Vec<T> = arr.to_vec();
 	__sort(arr, &mut aux, 0, arr.len() - 1);
 }
 

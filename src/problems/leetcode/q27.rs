@@ -34,7 +34,7 @@ mod tests {
     let mut nums1 = Vec::from([0, 1, 2, 2, 3, 0, 4, 2]);
     let val = 2;
     let n = Solution::remove_element(&mut nums1, val);
-    println!("#1 nums1={:?}, n={:?}", nums1, n);
+    println!("#2 nums1={:?}, n={:?}", nums1, n);
     nums1.truncate(n as usize);
     assert_eq!(&nums1[..], &[0, 1, 3, 0, 4]);
 	}

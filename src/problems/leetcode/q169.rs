@@ -71,32 +71,32 @@ mod tests {
 	fn test() {
     let nums = Vec::from([3, 2, 3]);
     let n = Solution::majority_element(nums);
-    println!("#1 n={:?}", n);
+    println!("#1.1 n={:?}", n);
     assert_eq!(n, 3);
 
     let nums = Vec::from([3, 2, 3]);
     let n = Solution::majority_element_v1(nums);
-    println!("#1 n={:?}", n);
+    println!("#2.1 n={:?}", n);
     assert_eq!(n, 3);
 
     let nums = Vec::from([3, 2, 3]);
     let n = Solution::majority_element_v2(nums);
-    println!("#1 n={:?}", n);
+    println!("#3.1 n={:?}", n);
     assert_eq!(n, 3);
 
     let nums = Vec::from([2, 2, 1, 1, 1, 2, 2]);
     let n = Solution::majority_element(nums);
-    println!("#1 n={:?}", n);
+    println!("#1.2 n={:?}", n);
     assert_eq!(n, 2);
 
     let nums = Vec::from([2, 2, 1, 1, 1, 2, 2]);
     let n = Solution::majority_element_v1(nums);
-    println!("#1 n={:?}", n);
+    println!("#2.2 n={:?}", n);
     assert_eq!(n, 2);
 
     let nums = Vec::from([2, 2, 1, 1, 1, 2, 2]);
     let n = Solution::majority_element_v2(nums);
-    println!("#1 n={:?}", n);
+    println!("#3.2 n={:?}", n);
     assert_eq!(n, 2);
     
 	}
